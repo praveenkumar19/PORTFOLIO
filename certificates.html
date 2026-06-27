@@ -1,0 +1,2591 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praveen Kumar - Certificates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-y: scroll;
+        }
+
+        /* ===== THEME VARIABLES ===== */
+        :root {
+            --bg-gradient-1: #f5f7fa;
+            --bg-gradient-2: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --card-bg: #ffffff;
+            --card-border: #e0e0e0;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --shadow: rgba(0, 0, 0, 0.08);
+            --cert-badge-bg: #e8f4f8;
+            --cert-badge-color: #1a5c6e;
+            --overlay-bg: rgba(0, 0, 0, 0.85);
+        }
+
+        body.dark-mode {
+            --bg-gradient-1: #0a0a2a;
+            --bg-gradient-2: #0f0f3a;
+            --text-primary: #ffffff;
+            --text-secondary: #c3cfe2;
+            --card-bg: rgba(15, 25, 45, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(10, 10, 30, 0.95);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --cert-badge-bg: rgba(78, 205, 196, 0.15);
+            --cert-badge-color: #4ecdc4;
+            --overlay-bg: rgba(0, 0, 0, 0.9);
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.3s ease;
+            min-height: 100vh;
+            cursor: none;
+            position: relative;
+        }
+
+        /* ============================================
+                   LIGHT MODE - SKY & CLOUDS ANIMATION
+                   ============================================ */
+        .light-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(180deg, #e8f0fe 0%, #dce8f5 30%, #f0f4f8 70%, #e8edf2 100%);
+        }
+        body.dark-mode .light-bg {
+            opacity: 0;
+        }
+
+        /* ===== SUN ===== */
+        .sun {
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 223, 107, 0.5) 0%, rgba(255, 200, 50, 0.2) 40%, transparent 70%);
+            filter: blur(40px);
+            animation: sunGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes sunGlow {
+            0% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+            100% { transform: scale(1.2) rotate(10deg); opacity: 0.9; }
+        }
+
+        .sun-ray {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 223, 107, 0.08) 0%, transparent 60%);
+            animation: sunRotate 30s linear infinite;
+        }
+        @keyframes sunRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(360deg) scale(1.1); }
+        }
+
+        /* ===== CLOUDS ===== */
+        .cloud {
+            position: absolute;
+            background: rgba(190, 200, 215, 0.7);
+            border-radius: 50px;
+            filter: blur(1px);
+            backdrop-filter: blur(2px);
+            animation: cloudDrift linear infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(190, 200, 215, 0.7);
+            border-radius: 50%;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .cloud-1 { width: 200px; height: 40px; top: 15%; left: -100px; animation-duration: 25s; animation-delay: 0s; }
+        .cloud-1::before { width: 80px; height: 80px; top: -40px; left: 20px; }
+        .cloud-1::after { width: 100px; height: 100px; top: -50px; left: 60px; }
+
+        .cloud-2 { width: 250px; height: 45px; top: 30%; left: -150px; animation-duration: 30s; animation-delay: -8s; }
+        .cloud-2::before { width: 100px; height: 90px; top: -45px; left: 30px; }
+        .cloud-2::after { width: 120px; height: 110px; top: -55px; left: 80px; }
+
+        .cloud-3 { width: 180px; height: 35px; top: 50%; left: -120px; animation-duration: 22s; animation-delay: -15s; }
+        .cloud-3::before { width: 70px; height: 70px; top: -35px; left: 20px; }
+        .cloud-3::after { width: 90px; height: 85px; top: -45px; left: 55px; }
+
+        .cloud-4 { width: 220px; height: 38px; top: 70%; left: -180px; animation-duration: 28s; animation-delay: -5s; }
+        .cloud-4::before { width: 85px; height: 75px; top: -38px; left: 25px; }
+        .cloud-4::after { width: 110px; height: 95px; top: -48px; left: 70px; }
+
+        .cloud-5 { width: 160px; height: 30px; top: 85%; left: -80px; animation-duration: 20s; animation-delay: -12s; }
+        .cloud-5::before { width: 60px; height: 60px; top: -30px; left: 15px; }
+        .cloud-5::after { width: 80px; height: 75px; top: -40px; left: 50px; }
+
+        @keyframes cloudDrift {
+            0% { transform: translateX(0) scale(1); opacity: 0.6; }
+            50% { opacity: 0.9; }
+            100% { transform: translateX(calc(100vw + 300px)) scale(1.1); opacity: 0.6; }
+        }
+
+        /* ===== LIGHT PARTICLES ===== */
+        .light-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+            animation: particleFloat 12s ease-in-out infinite;
+        }
+        .light-particle:nth-child(1) { width: 4px; height: 4px; top: 10%; left: 20%; animation-delay: 0s; }
+        .light-particle:nth-child(2) { width: 6px; height: 6px; top: 25%; left: 60%; animation-delay: 2s; }
+        .light-particle:nth-child(3) { width: 3px; height: 3px; top: 40%; left: 80%; animation-delay: 4s; }
+        .light-particle:nth-child(4) { width: 5px; height: 5px; top: 55%; left: 30%; animation-delay: 6s; }
+        .light-particle:nth-child(5) { width: 4px; height: 4px; top: 70%; left: 70%; animation-delay: 8s; }
+        .light-particle:nth-child(6) { width: 6px; height: 6px; top: 85%; left: 40%; animation-delay: 10s; }
+        .light-particle:nth-child(7) { width: 3px; height: 3px; top: 15%; left: 90%; animation-delay: 3s; }
+        .light-particle:nth-child(8) { width: 5px; height: 5px; top: 45%; left: 10%; animation-delay: 7s; }
+        .light-particle:nth-child(9) { width: 4px; height: 4px; top: 65%; left: 85%; animation-delay: 11s; }
+        .light-particle:nth-child(10) { width: 6px; height: 6px; top: 90%; left: 55%; animation-delay: 5s; }
+
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
+            50% { transform: translateY(-30px) translateX(10px) scale(1.5); opacity: 0.7; }
+        }
+
+        /* ===== SOFT MIST ===== */
+        .mist {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: mistGlide 25s ease-in-out infinite alternate;
+        }
+        .mist-1 {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            left: -200px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.06), transparent 70%);
+            animation-delay: 0s;
+        }
+        .mist-2 {
+            width: 600px;
+            height: 600px;
+            bottom: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.05), transparent 70%);
+            animation-delay: -8s;
+        }
+        .mist-3 {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255, 223, 107, 0.05), transparent 70%);
+            animation-delay: -16s;
+        }
+        @keyframes mistGlide {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+            100% { transform: translate(40px, -30px) scale(1.2); opacity: 0.8; }
+        }
+
+        /* ============================================
+                   DARK MODE SPACE ANIMATIONS
+                   ============================================ */
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        body.dark-mode .space-bg {
+            opacity: 1;
+        }
+
+        .deep-space {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #0a0a2a 0%, #050515 100%);
+        }
+
+        /* Star Fields */
+        .star-field-1 {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            animation: driftSlow 60s linear infinite;
+        }
+        .star-field-2 {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            animation: driftMedium 40s linear infinite;
+        }
+        .star-field-3 {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            animation: driftFast 25s linear infinite;
+        }
+        @keyframes driftSlow {
+            0% { transform: translate(0%, 0%) rotate(0deg); }
+            100% { transform: translate(5%, 5%) rotate(2deg); }
+        }
+        @keyframes driftMedium {
+            0% { transform: translate(0%, 0%) rotate(0deg); }
+            100% { transform: translate(-8%, 3%) rotate(-3deg); }
+        }
+        @keyframes driftFast {
+            0% { transform: translate(0%, 0%) rotate(0deg); }
+            100% { transform: translate(10%, -5%) rotate(5deg); }
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Nebula */
+        .nebula-flow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: nebulaFlow 20s ease-in-out infinite alternate;
+        }
+        @keyframes nebulaFlow {
+            0% { transform: scale(1) translateX(0%) translateY(0%); opacity: 0.4; }
+            50% { transform: scale(1.2) translateX(5%) translateY(3%); opacity: 0.7; }
+            100% { transform: scale(1) translateX(-3%) translateY(-2%); opacity: 0.4; }
+        }
+        .nebula-1 {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            background: radial-gradient(ellipse at 30% 40%, rgba(78, 205, 196, 0.15), transparent 60%);
+            filter: blur(40px);
+        }
+        .nebula-2 {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            bottom: 0%;
+            right: 0%;
+            background: radial-gradient(ellipse at 70% 60%, rgba(255, 107, 107, 0.12), transparent 60%);
+            filter: blur(50px);
+        }
+
+        /* Planets */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(3px);
+            animation: orbitFloat 15s ease-in-out infinite;
+        }
+        @keyframes orbitFloat {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(15px, -20px); }
+            50% { transform: translate(-10px, -35px); }
+            75% { transform: translate(-20px, -15px); }
+        }
+        .planet-1 {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 200, 120, 0.4), rgba(255, 100, 50, 0.15));
+            top: 15%;
+            right: 5%;
+            animation: pulseGlow 4s ease-in-out infinite alternate;
+        }
+        .planet-2 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 30% 30%, rgba(100, 200, 255, 0.3), rgba(50, 80, 200, 0.1));
+            bottom: -50px;
+            left: -50px;
+            animation: pulseGlow 5s ease-in-out infinite alternate reverse;
+        }
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: linear-gradient(90deg, white, rgba(255,255,255,0));
+            border-radius: 50%;
+            animation: shootSmooth 6s linear infinite;
+        }
+        @keyframes shootSmooth {
+            0% { transform: translateX(0) translateY(0); opacity: 1; width: 3px; }
+            50% { opacity: 0.8; width: 80px; }
+            100% { transform: translateX(-400px) translateY(350px); opacity: 0; width: 3px; }
+        }
+
+        /* Parallax Layer */
+        .parallax-layer {
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            top: -5%;
+            left: -5%;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* ============================================
+                   CURSOR ANIMATION
+                   ============================================ */
+        .cursor-dot {
+            width: 15px;
+            height: 15px;
+            background: #00ffc3;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #00ffdd;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.2s ease;
+            opacity: 0.6;
+        }
+        .cursor-dot.hover {
+            transform: scale(1.5);
+            background: white;
+        }
+        .cursor-outline.hover {
+            transform: scale(1.5);
+            border-color: #ff6b6b;
+            opacity: 1;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+
+        /* ============================================
+                   NAVIGATION
+                   ============================================ */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 18px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        body:not(.dark-mode) .logo img {
+            filter: brightness(0) invert(0);
+        }
+
+        body.dark-mode .logo img {
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            opacity: 0.8;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            cursor: none;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 10px;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        .back-btn {
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+            color: #0f172a;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: none;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+                   HERO HEADER
+                   ============================================ */
+        .cert-hero {
+            padding: 140px 8% 60px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cert-hero h1 {
+            font-size: 52px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), #4ecdc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .cert-hero p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cert-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .cert-stat {
+            padding: 16px 32px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .cert-stat:hover {
+            transform: translateY(-3px);
+            border-color: #4ecdc4;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .cert-stat .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4ecdc4;
+        }
+
+        .cert-stat .label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+                   CERTIFICATES SECTION
+                   ============================================ */
+        .certificates-section {
+            padding: 20px 8% 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cert-filter {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+            color: #0f172a;
+            border-color: #4ecdc4;
+            transform: scale(1.05);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        /* ===== CERTIFICATE CARD ===== */
+        .cert-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 24px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+
+        .cert-card.show {
+            display: block;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ffdf6b, #4ecdc4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px var(--shadow);
+            border-color: #4ecdc4;
+        }
+
+        .cert-card:hover::before {
+            opacity: 1;
+        }
+
+        /* ===== CERTIFICATE IMAGE ===== */
+        .cert-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            background: var(--bg-gradient-1);
+            border: 1px solid var(--card-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cert-image-wrapper:hover {
+            border-color: #4ecdc4;
+            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.2);
+        }
+
+        .cert-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cert-image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .cert-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .cert-image-wrapper:hover .cert-image-overlay {
+            opacity: 1;
+        }
+
+        .cert-image-overlay span {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+            border-radius: 30px;
+            color: #0f172a;
+        }
+
+        .cert-no-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            flex-direction: column;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .cert-no-image i {
+            font-size: 40px;
+            color: #4ecdc4;
+            opacity: 0.4;
+        }
+
+        .cert-badge-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 14px;
+            background: var(--cert-badge-bg);
+            color: var(--cert-badge-color);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .cert-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .cert-card .issuer {
+            font-size: 0.9rem;
+            color: #4ecdc4;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .cert-card .description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .cert-card .cert-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding-top: 12px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .cert-card .cert-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cert-card .cert-meta i {
+            color: #4ecdc4;
+        }
+
+        .cert-card .score {
+            display: inline-block;
+            padding: 2px 12px;
+            background: rgba(78, 205, 196, 0.12);
+            color: #4ecdc4;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .cert-card .cert-id {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .cert-card .expand-btn {
+            margin-top: 12px;
+            padding: 6px 16px;
+            background: none;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .cert-card .expand-btn:hover {
+            border-color: #4ecdc4;
+            color: #4ecdc4;
+        }
+
+        .cert-card .cert-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .cert-card .detail-item {
+            padding: 10px 14px;
+            background: var(--bg-gradient-1);
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+        }
+
+        .cert-card .detail-item .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            letter-spacing: 0.5px;
+        }
+
+        .cert-card .detail-item .value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2px;
+        }
+
+        /* ============================================
+                   LIGHTBOX / FULLSCREEN VIEW
+                   ============================================ */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay-bg);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 85%;
+            max-height: 85%;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .lightbox-caption .sub {
+            font-weight: 400;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+                   VIEW ALL - BACK TO PORTFOLIO
+                   ============================================ */
+        .view-all-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .view-all-btn {
+            padding: 14px 40px;
+            border: 2px solid var(--card-border);
+            border-radius: 40px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            cursor: none;
+        }
+
+        .view-all-btn:hover {
+            background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+            color: #0f172a;
+            border-color: #4ecdc4;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+        }
+
+        /* ============================================
+                   FOOTER
+                   ============================================ */
+        /* ============================================
+FOOTER - IMPROVED STYLES
+============================================ */
+.footer {
+    background: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    padding: 60px 8% 0;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(78, 205, 196, 0.08), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.footer::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 223, 107, 0.06), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Brand Section */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+body:not(.dark-mode) .footer-logo {
+    filter: brightness(0) invert(0);
+}
+
+body.dark-mode .footer-logo {
+    filter: brightness(0) invert(1);
+}
+
+.footer-tagline {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    opacity: 0.8;
+    max-width: 280px;
+}
+
+/* Footer Headings */
+.footer h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.footer h4:hover::after {
+    width: 50px;
+}
+
+/* Quick Links */
+.footer-links-wrapper ul,
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-wrapper ul li,
+.footer-contact ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links-wrapper ul li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 0;
+    display: inline-block;
+}
+
+.footer-links-wrapper ul li a::before {
+    content: '›';
+    position: absolute;
+    left: -12px;
+    color: #4ecdc4;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.footer-links-wrapper ul li a:hover {
+    color: #4ecdc4;
+    padding-left: 16px;
+}
+
+.footer-links-wrapper ul li a:hover::before {
+    opacity: 1;
+    left: 0;
+}
+
+/* Contact Info */
+.footer-contact ul li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.footer-contact ul li i {
+    color: #4ecdc4;
+    width: 18px;
+    text-align: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.footer-contact ul li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.footer-contact ul li a:hover {
+    color: #4ecdc4;
+}
+
+.footer-contact ul li span {
+    color: var(--text-secondary);
+}
+
+/* Social Icons */
+.footer-social h4 {
+    margin-bottom: 16px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-gradient-1);
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: none;
+}
+
+.social-link:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: transparent;
+}
+
+.social-link i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover i {
+    transform: scale(1.1);
+}
+
+/* Social Colors */
+.social-link.github:hover {
+    background: #333;
+    color: white;
+    box-shadow: 0 8px 25px rgba(51, 51, 51, 0.3);
+}
+
+.social-link.linkedin:hover {
+    background: #0077b5;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 119, 181, 0.3);
+}
+
+.social-link.x:hover {
+    background: #020507;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.social-link.instagram:hover {
+    background: radial-gradient(circle at 30% 110%, 
+                #fdf497 0%, #fdf497 5%, #fd5949 45%, 
+                #d6249f 60%, #285AEB 90%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(225, 48, 108, 0.3);
+}
+
+.social-link.facebook:hover {
+    background: #1877f2;
+    color: white;
+    box-shadow: 0 8px 25px rgba(24, 119, 242, 0.3);
+}
+
+/* Footer CTA Button */
+.footer-cta {
+    margin-top: 5px;
+}
+
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+    color: #0f172a;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    cursor: none;
+}
+
+.footer-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+}
+
+.footer-btn i {
+    transition: transform 0.3s ease;
+}
+
+.footer-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    margin-top: 50px;
+    padding: 20px 0;
+    border-top: 1px solid var(--card-border);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.footer-bottom .highlight {
+    color: #4ecdc4;
+    font-weight: 600;
+}
+
+.footer-credit {
+    font-size: 0.8rem;
+}
+
+.footer-credit i {
+    margin: 0 3px;
+}
+
+/* Dark Mode Fix for Social Icons */
+body.dark-mode .social-link {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+}
+
+body.dark-mode .social-link:hover {
+    border-color: transparent;
+}
+
+/* ===== RESPONSIVE FOOTER ===== */
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 5% 0;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-tagline {
+        max-width: 100%;
+    }
+
+    .footer h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-links-wrapper ul li a::before {
+        display: none;
+    }
+
+    .footer-links-wrapper ul li a:hover {
+        padding-left: 0;
+    }
+
+    .footer-contact ul li {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-link {
+        width: 38px;
+        height: 38px;
+    }
+
+    .social-link i {
+        font-size: 0.9rem;
+    }
+
+    .footer-btn {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+    }
+}
+
+        /* ============================================
+                   ANIMATIONS
+                   ============================================ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+                   MOBILE MENU
+                   ============================================ */
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 260px;
+            height: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            z-index: 200;
+            padding: 100px 30px;
+            transition: right 0.3s;
+            border-left: 1px solid var(--card-border);
+        }
+
+        #mobileMenu ul {
+            list-style: none;
+        }
+
+        #mobileMenu ul li {
+            margin-bottom: 24px;
+        }
+
+        #mobileMenu ul li a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        #mobileMenu .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+                   RESPONSIVE
+                   ============================================ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-btn {
+                display: block;
+            }
+            .cert-hero h1 {
+                font-size: 32px;
+            }
+            .cert-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .cert-card .cert-detail-grid {
+                grid-template-columns: 1fr;
+            }
+            .cert-stats {
+                gap: 16px;
+            }
+            .cert-stat {
+                padding: 12px 20px;
+                flex: 1;
+                min-width: 100px;
+            }
+            .cert-stat .number {
+                font-size: 24px;
+            }
+            .back-btn span {
+                display: none;
+            }
+            .cert-image-wrapper {
+                height: 140px;
+            }
+            .lightbox-content {
+                max-width: 95%;
+                max-height: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cert-hero {
+                padding: 120px 5% 40px;
+            }
+            .cert-hero h1 {
+                font-size: 26px;
+            }
+            .certificates-section {
+                padding: 10px 5% 60px;
+            }
+            .cert-card {
+                padding: 20px 16px;
+            }
+            .cert-image-wrapper {
+                height: 120px;
+            }
+        }
+        /* ============================================
+                   BACK TO TOP BUTTON
+                   ============================================ */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+            color: #0f172a;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #backToTop:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LIGHT MODE BACKGROUND ===== -->
+    <div class="light-bg" id="lightBg">
+        <div class="sun"></div>
+        <div class="sun-ray"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+        <div class="cloud cloud-5"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="light-particle"></div>
+        <div class="mist mist-1"></div>
+        <div class="mist mist-2"></div>
+        <div class="mist mist-3"></div>
+    </div>
+
+    <!-- ===== DARK MODE BACKGROUND ===== -->
+    <div class="space-bg">
+        <div class="deep-space"></div>
+        <div class="parallax-layer" id="parallaxLayer">
+            <div class="star-field-1" id="starField1"></div>
+            <div class="star-field-2" id="starField2"></div>
+            <div class="star-field-3" id="starField3"></div>
+        </div>
+        <div class="nebula-flow">
+            <div class="nebula-1"></div>
+            <div class="nebula-2"></div>
+        </div>
+        <div class="planet planet-1"></div>
+        <div class="planet planet-2"></div>
+        <div id="shootingStarsContainer"></div>
+    </div>
+
+    <!-- ===== CURSOR ===== -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img id="logoImg" src="signature-dark-.png" alt="Praveen Kumar">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#top">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#work">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="theme-toggle" onclick="toggleDarkMode()">🌙</button>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> <span>Back</span></a>
+            <button class="menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div id="mobileMenu">
+        <button class="close-btn" onclick="toggleMobileMenu()">✕</button>
+        <ul>
+            <li><a href="index.html#top" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="index.html#about" onclick="toggleMobileMenu()">About</a></li>
+            <li><a href="index.html#skills" onclick="toggleMobileMenu()">Skills</a></li>
+            <li><a href="index.html#work" onclick="toggleMobileMenu()">Projects</a></li>
+            <li><a href="index.html#contact" onclick="toggleMobileMenu()">Contact</a></li>
+            <li><a href="certificates.html" onclick="toggleMobileMenu()">Certificates</a></li>
+        </ul>
+    </div>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightboxImage" src="" alt="Certificate">
+            <div class="lightbox-caption" id="lightboxCaption">
+                <span id="lightboxTitle">Certificate Title</span>
+                <span class="sub" id="lightboxIssuer">Issuer</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="cert-hero">
+        <h1>📜 Certificates I've Earned</h1>
+        <p>Click on any certificate image to view it in full size</p>
+        <div class="cert-stats">
+            <div class="cert-stat fade-up">
+                <div class="number">35</div>
+                <div class="label">Total Certificates</div>
+            </div>
+            <div class="cert-stat fade-up">
+                <div class="number">12+</div>
+                <div class="label">Platforms</div>
+            </div>
+            <div class="cert-stat fade-up">
+                <div class="number">2025-26</div>
+                <div class="label">Date Range</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CERTIFICATES ===== -->
+    <section class="certificates-section">
+
+        <div class="cert-grid" id="certGrid">
+
+            <!-- ===== 1. NPTEL OOP ===== -->
+            <div class="cert-card show fade-up" data-category="programming">
+                <div class="cert-image-wrapper" onclick="openLightbox('nptel.png', 'Fundamentals of Object Oriented Programming', 'NPTEL')">
+                    <img src="nptel.png" alt="NPTEL OOP Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-certificate"></i> NPTEL Elite
+                </div>
+                <h3>Fundamentals of Object Oriented Programming [ NPTEL ] </h3>
+                <div class="issuer">NPTEL | IIT Roorkee</div>
+                <p class="description">12-week course covering core OOP concepts with a consolidated score of 68%. Successfully completed by 4,549 candidates.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Jan-Apr 2026</span>
+                    <span><i class="fas fa-star"></i> <span class="score">68%</span></span>
+                    <span class="cert-id">NPTEL26CS87S1550306788</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Online Assignments</div>
+                        <div class="value">24.38/25</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Proctored Exam</div>
+                        <div class="value">43.5/75</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Total Candidates</div>
+                        <div class="value">4,549</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 2. Deloitte Cyber ===== -->
+            <div class="cert-card show fade-up" data-category="cybersecurity">
+                <div class="cert-image-wrapper" onclick="openLightbox('deloitte.png', 'Cyber Job Simulation', 'Deloitte Australia')">
+                    <img src="deloitte.png" alt="Deloitte Cyber Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-shield-halved"></i> Cybersecurity
+                </div>
+                <h3>Cyber Job Simulation</h3>
+                <div class="issuer">Deloitte Australia</div>
+                <p class="description">Completed practical cybersecurity tasks including threat analysis and security operations simulation during June 2026.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Jun 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">ebYX5rxxQ2RtjeLLD</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Duration</div>
+                        <div class="value">June 2026</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Focus</div>
+                        <div class="value">Cyber Security</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Issued By</div>
+                        <div class="value">Forage</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 3. IBM Cybersecurity ===== -->
+            <div class="cert-card show fade-up" data-category="cybersecurity">
+                <div class="cert-image-wrapper" onclick="openLightbox('ibm.png', 'Cybersecurity Fundamentals', 'IBM SkillsBuild')">
+                    <img src="ibm.png" alt="IBM Cybersecurity Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-lock"></i> Cybersecurity
+                </div>
+                <h3>Cybersecurity Fundamentals</h3>
+                <div class="issuer">IBM SkillsBuild</div>
+                <p class="description">Professional certificate covering core cybersecurity concepts including threats, vulnerabilities, and defense mechanisms.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Jun 04, 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Verified</span></span>
+                    <span class="cert-id">IBM-CS-2026</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Issued By</div>
+                        <div class="value">IBM SkillsBuild</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Verify</div>
+                        <div class="value">Credly Badge</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 4. Cybrary Network ===== -->
+            <div class="cert-card show fade-up" data-category="cybersecurity">
+                <div class="cert-image-wrapper" onclick="openLightbox('cybrary2.png', 'Network Basics', 'Cybrary')">
+                    <img src="cybrary2.png" alt="Cybrary Network Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-network-wired"></i> Networking
+                </div>
+                <h3>Network Basics</h3>
+                <div class="issuer">Cybrary</div>
+                <p class="description">1-hour training course covering OSI model, TCP/IP, and network protocols fundamentals.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> May 31, 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">1 CEU/CPE</span></span>
+                    <span class="cert-id">CC-55c4b56b-1925-4b1d-8e38-2f5f174239f7</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Duration</div>
+                        <div class="value">1 Hour</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">CEU/CPE</div>
+                        <div class="value">1 Credit</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 5. Cybrary Careers ===== -->
+            <div class="cert-card show fade-up" data-category="cybersecurity">
+                <div class="cert-image-wrapper" onclick="openLightbox('cybrary.png', 'Careers in Cybersecurity', 'Cybrary')">
+                    <img src="cybrary.png" alt="Cybrary Careers Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-briefcase"></i> Cybersecurity
+                </div>
+                <h3>Careers in Cybersecurity</h3>
+                <div class="issuer">Cybrary</div>
+                <p class="description">2-hour training course exploring cybersecurity career paths and skills needed for different roles.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> May 22, 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">1 CEU/CPE</span></span>
+                    <span class="cert-id">CC-432e32e5-1538-4c81-80b1-ea28ffa2be5b</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Duration</div>
+                        <div class="value">2 Hours</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">CEU/CPE</div>
+                        <div class="value">1 Credit</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 6. Cybrary Orientation ===== -->
+            <div class="cert-card show fade-up" data-category="cybersecurity">
+                <div class="cert-image-wrapper" onclick="openLightbox('cybrary3.png', 'Cybrary Orientation', 'Cybrary')">
+                    <img src="cybrary3.png" alt="Cybrary Orientation Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-graduation-cap"></i> Orientation
+                </div>
+                <h3>Cybrary Orientation</h3>
+                <div class="issuer">Cybrary</div>
+                <p class="description">1-hour orientation course introducing the Cybrary platform and cybersecurity learning resources.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> May 22, 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">CC-f4b6d2fe-c721-46b2-8179-8158c7b3318a</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Duration</div>
+                        <div class="value">1 Hour</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Type</div>
+                        <div class="value">Orientation</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 7. freeCodeCamp Responsive ===== -->
+            <div class="cert-card show fade-up" data-category="web">
+                <div class="cert-image-wrapper" onclick="openLightbox('freecodecamp.png', 'Responsive Web Design Developer', 'freeCodeCamp')">
+                    <img src="freecodecamp.png" alt="freeCodeCamp Responsive Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-code"></i> Web Development
+                </div>
+                <h3>Responsive Web Design Developer</h3>
+                <div class="issuer">freeCodeCamp</div>
+                <p class="description">300-hour certification covering HTML5, CSS3, and responsive design principles with 5 practical projects.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Feb 28, 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">300 Hours</span></span>
+                    <span class="cert-id">praveenkumar19/responsive-web-design-v9</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Duration</div>
+                        <div class="value">300 Hours</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Projects</div>
+                        <div class="value">5 Projects</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Issued By</div>
+                        <div class="value">freeCodeCamp.org</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 8. Infosys Responsive Web ===== -->
+            <div class="cert-card show fade-up" data-category="web">
+                <div class="cert-image-wrapper" onclick="openLightbox('infosys.png', 'Responsive Web Development', 'Infosys Springboard')">
+                    <img src="infosys.png" alt="Infosys Web Development Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-laptop-code"></i> Web Development
+                </div>
+                <h3>Responsive Web Development</h3>
+                <div class="issuer">Infosys Springboard</div>
+                <p class="description">Complete course on building responsive websites using HTML5, CSS3, and JavaScript.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Mar 6, 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">INF-WEB-2026</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Topics</div>
+                        <div class="value">HTML5, CSS3, JavaScript</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Type</div>
+                        <div class="value">Course</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 9. Infosys Java ===== -->
+            <div class="cert-card show fade-up" data-category="programming">
+                <div class="cert-image-wrapper" onclick="openLightbox('infosys.png', 'Java Programming Fundamentals', 'Infosys Springboard')">
+                    <img src="infosys.png" alt="Infosys Java Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-coffee"></i> Java
+                </div>
+                <h3>Java Programming Fundamentals</h3>
+                <div class="issuer">Infosys Springboard</div>
+                <p class="description">Comprehensive Java course covering syntax, OOP concepts, collections, and basic algorithms.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Mar 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">INF-JAVA-2026</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Topics</div>
+                        <div class="value">OOP, Collections</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Type</div>
+                        <div class="value">Course</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 10. Infosys Python ===== -->
+            <div class="cert-card show fade-up" data-category="programming">
+                <div class="cert-image-wrapper" onclick="openLightbox('infosys.png', 'Introduction to Python', 'Infosys Springboard')">
+                    <img src="infosys.png" alt="Infosys Python Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-python"></i> Python
+                </div>
+                <h3>Introduction to Python</h3>
+                <div class="issuer">Infosys Springboard</div>
+                <p class="description">Python fundamentals including data types, control flow, functions, and basic libraries.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Mar 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">INF-PYTHON-2026</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Topics</div>
+                        <div class="value">Python Fundamentals</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Type</div>
+                        <div class="value">Course</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 11. Microsoft Azure ===== -->
+            <div class="cert-card show fade-up" data-category="cloud">
+                <div class="cert-image-wrapper" onclick="openLightbox('microsoft.png', 'Secure Storage for Azure Files', 'Microsoft')">
+                    <img src="microsoft.png" alt="Microsoft Azure Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-cloud"></i> Azure
+                </div>
+                <h3>Secure Storage for Azure Files</h3>
+                <div class="issuer">Microsoft Learn</div>
+                <p class="description">Microsoft Applied Skills certification for managing and securing Azure storage solutions including Blob Storage.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Oct 29, 2025</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Active</span></span>
+                    <span class="cert-id">581A4F13A544D4F7</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Status</div>
+                        <div class="value">Active</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Type</div>
+                        <div class="value">Applied Skills</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Verifiable</div>
+                        <div class="value">Online</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 12. Microsoft Power Apps ===== -->
+            <div class="cert-card show fade-up" data-category="cloud">
+                <div class="cert-image-wrapper" onclick="openLightbox('microsoft.png', 'Create and Manage Canvas Apps', 'Microsoft')">
+                    <img src="microsoft.png" alt="Microsoft Power Apps Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-paint-brush"></i> Power Apps
+                </div>
+                <h3>Create and Manage Canvas Apps</h3>
+                <div class="issuer">Microsoft Learn</div>
+                <p class="description">Microsoft Applied Skills certification for building low-code applications with Power Apps for business solutions.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Oct 29, 2025</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Active</span></span>
+                    <span class="cert-id">581A4F13A544D4F7</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Status</div>
+                        <div class="value">Active</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Type</div>
+                        <div class="value">Applied Skills</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 13. TCS Communication ===== -->
+            <div class="cert-card show fade-up" data-category="softskills">
+                <div class="cert-image-wrapper" onclick="openLightbox('tcsion.png', 'Communication Skills', 'TCS iON')">
+                    <img src="tcsion.png" alt="TCS Communication Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-comments"></i> Soft Skills
+                </div>
+                <h3>Communication Skills</h3>
+                <div class="issuer">TCS iON</div>
+                <p class="description">Professional communication course covering importance of communication, barriers, verbal & non-verbal communication.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Nov 26, 2025</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">91306-29495298-1016</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Topics</div>
+                        <div class="value">Communication, Barriers, Verbal</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Issued By</div>
+                        <div class="value">TCS iON</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 14. CSC ADCA ===== -->
+            <div class="cert-card show fade-up" data-category="programming">
+                <div class="cert-image-wrapper" onclick="openLightbox('csc-certificate-ADCA-course.png', 'ADCA Course', 'CSC Computer Education')">
+                    <img src="csc-certificate-ADCA-course.png" alt="CSC ADCA Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-laptop"></i> Programming
+                </div>
+                <h3>Advanced Diploma in Computer Applications</h3>
+                <div class="issuer">CSC Computer Education</div>
+                <p class="description">6-month diploma program covering C Language, OOPs using C++, Java, and Python with overall A Grade.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Apr-Oct 2025</span>
+                    <span><i class="fas fa-star"></i> <span class="score">Grade A</span></span>
+                    <span class="cert-id">CSC-ADCA-2025</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Duration</div>
+                        <div class="value">6 Months</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Grade</div>
+                        <div class="value">A - Excellent</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Topics</div>
+                        <div class="value">C, C++, Java, Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 15. Scaler JavaScript ===== -->
+            <div class="cert-card show fade-up" data-category="web">
+                <div class="cert-image-wrapper" onclick="openLightbox('scaler.png', 'JavaScript Course', 'Scaler')">
+                    <img src="scaler.png" alt="Scaler JavaScript Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fab fa-js"></i> JavaScript
+                </div>
+                <h3>JavaScript Course: Unlocking the Power of JavaScript</h3>
+                <div class="issuer">Scaler</div>
+                <p class="description">Complete JavaScript tutorial covering 70 video tutorials, 9 modules, and 8 coding challenges.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Nov 23, 2025</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">SCALER-JS-2025</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Video Tutorials</div>
+                        <div class="value">70</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Modules</div>
+                        <div class="value">9</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Challenges</div>
+                        <div class="value">8</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 16. Accenture UX ===== -->
+            <div class="cert-card show fade-up" data-category="softskills">
+                <div class="cert-image-wrapper" onclick="openLightbox('accenture.png', 'Digital Skills: User Experience', 'Accenture')">
+                    <img src="accenture.png" alt="Accenture UX Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-pencil-ruler"></i> UX Design
+                </div>
+                <h3>Digital Skills: User Experience</h3>
+                <div class="issuer">Accenture | FutureLearn</div>
+                <p class="description">3-week online course (2 hours/week) introducing user experience principles and its importance in the digital world.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> 2025</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">ACCENTURE-UX-2025</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Duration</div>
+                        <div class="value">3 Weeks</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Weekly</div>
+                        <div class="value">2 Hours</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Issued By</div>
+                        <div class="value">Accenture</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 17. Anthropic Teaching AI ===== -->
+            <div class="cert-card show fade-up" data-category="ai">
+                <div class="cert-image-wrapper" onclick="openLightbox('anthropic.png', 'Teaching the AI Fluency Framework', 'Anthropic')">
+                    <img src="anthropic.png" alt="Anthropic AI Fluency Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-chalkboard-teacher"></i> AI Education
+                </div>
+                <h3>Teaching the AI Fluency Framework</h3>
+                <div class="issuer">Anthropic</div>
+                <p class="description">Certificate for mastering the AI Fluency Framework to effectively teach AI concepts and literacy.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Completed</span></span>
+                    <span class="cert-id">ANTHROPIC-AI-FLUENCY</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Focus</div>
+                        <div class="value">AI Literacy</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Framework</div>
+                        <div class="value">AI Fluency</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 18. Anthropic MCP Advanced ===== -->
+            <div class="cert-card show fade-up" data-category="ai">
+                <div class="cert-image-wrapper" onclick="openLightbox('anthropic2.png', 'Model Context Protocol: Advanced Topics', 'Anthropic')">
+                    <img src="anthropic2.png" alt="Anthropic MCP Certificate" loading="lazy">
+                    <div class="cert-image-overlay">
+                        <span><i class="fas fa-search-plus"></i> View Full</span>
+                    </div>
+                </div>
+                <div class="cert-badge-icon">
+                    <i class="fas fa-microchip"></i> MCP
+                </div>
+                <h3>Model Context Protocol: Advanced Topics</h3>
+                <div class="issuer">Anthropic</div>
+                <p class="description">Advanced certification covering Model Context Protocol concepts and implementation strategies.</p>
+                <div class="cert-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Mar 16, 2026</span>
+                    <span><i class="fas fa-check-circle"></i> <span class="score">Verified</span></span>
+                    <span class="cert-id">gifjgwzmgzr3</span>
+                </div>
+                <button class="expand-btn" onclick="toggleDetails(this)">
+                    <i class="fas fa-plus"></i> View Details
+                </button>
+                <div class="cert-detail-grid" style="display:none;">
+                    <div class="detail-item">
+                        <div class="label">Certificate No</div>
+                        <div class="value">gifjgwzmgzr3</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Type</div>
+                        <div class="value">Advanced Topics</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Back to Portfolio -->
+        <div class="view-all-section">
+            <a href="index.html" class="view-all-btn">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </section>
+
+       <!-- ============================================
+FOOTER - IMPROVED VERSION
+============================================ -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Brand Section -->
+        <div class="footer-brand">
+            <img src="signature-dark-.png" alt="Praveen Kumar" class="footer-logo" id="footerLogo">
+            <p class="footer-tagline">Cyber Security Student &amp; Frontend Developer</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-links-wrapper">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="#top">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#work">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="certificates.html">Certificates</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-contact">
+            <h4>Get In Touch</h4>
+            <ul>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:mrapraveenkumar200719@gmail.com">mrapraveenkumar200719@gmail.com</a>
+                </li>
+                <li>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:9094392300">+91 90943 92300</a>
+                </li>
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Chennai, India</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="footer-social">
+            <h4>Follow Me</h4>
+            <div class="social-icons">
+                <a href="https://github.com/praveenkumar19" target="_blank" class="social-link github" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/praveen-kumar-792b8a395/" target="_blank" class="social-link linkedin" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/praveeneyy19/" target="_blank" class="social-link instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/praveen19a" target="_blank" class="social-link x" aria-label="X (Twitter)">
+                    <i class="fab fa-x"></i>
+                </a>
+            </div>
+            <div class="footer-cta">
+                <a href="#contact" class="footer-btn">Let's Talk <i class="fas fa-paper-plane"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <p>© 2026 <span class="highlight">Praveen Kumar</span>. All rights reserved.</p>
+            <p>Designed & Developed by <span class="highlight">Praveen Kumar</span></p>
+    </div>
+</footer>
+
+
+  <button id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ===== OPEN LIGHTBOX =====
+        function openLightbox(imageSrc, title, issuer) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImage');
+            const titleEl = document.getElementById('lightboxTitle');
+            const issuerEl = document.getElementById('lightboxIssuer');
+
+            img.src = imageSrc;
+            img.alt = title;
+            titleEl.textContent = title;
+            issuerEl.textContent = issuer;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ===== CLOSE LIGHTBOX =====
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ===== TOGGLE DETAILS =====
+        function toggleDetails(btn) {
+            const details = btn.nextElementSibling;
+            if (details) {
+                const isHidden = details.style.display === 'none' || details.style.display === '';
+                details.style.display = isHidden ? 'grid' : 'none';
+                btn.innerHTML = isHidden ?
+                    '<i class="fas fa-minus"></i> Hide Details' :
+                    '<i class="fas fa-plus"></i> View Details';
+            }
+        }
+
+        // ===== FILTER FUNCTION =====
+        function filterCertificates(category) {
+            const cards = document.querySelectorAll('.cert-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.classList.remove('visible');
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ===== FILTER BUTTONS =====
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                filterCertificates(this.dataset.filter);
+            });
+        });
+
+        // ===== DARK MODE TOGGLE =====
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.theme-toggle');
+            const logo = document.getElementById('logoImg');
+            if (document.body.classList.contains('dark-mode')) {
+                if (btn) btn.textContent = '☀️';
+                if (logo) logo.src = 'signature-light-.png';
+            } else {
+                if (btn) btn.textContent = '🌙';
+                if (logo) logo.src = 'signature-dark-.png';
+            }
+        }
+
+        // ===== MOBILE MENU =====
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.style.right = menu.style.right === '0px' ? '-300px' : '0px';
+        }
+
+        // ===== FADE-UP ANIMATION =====
+        const fadeElements = document.querySelectorAll('.fade-up');
+
+        function checkFade() {
+            fadeElements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
+
+        // ===== CREATE STAR FIELDS =====
+        function createStarField(containerId, count, minSize, maxSize) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = (Math.random() * (maxSize - minSize) + minSize) + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                container.appendChild(star);
+            }
+        }
+
+        createStarField('starField1', 150, 1, 2.5);
+        createStarField('starField2', 100, 1.5, 3);
+        createStarField('starField3', 80, 2, 4);
+
+        // ===== CREATE SHOOTING STARS =====
+        function createShootingStars() {
+            const container = document.getElementById('shootingStarsContainer');
+            if (!container) return;
+            for (let i = 0; i < 6; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.classList.add('shooting-star');
+                shootingStar.style.top = Math.random() * 60 + '%';
+                shootingStar.style.left = Math.random() * 100 + '%';
+                shootingStar.style.animationDelay = (Math.random() * 15) + 's';
+                shootingStar.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                container.appendChild(shootingStar);
+            }
+        }
+
+        createShootingStars();
+
+        // ===== PARALLAX EFFECT =====
+        const parallaxLayer = document.getElementById('parallaxLayer');
+        if (parallaxLayer) {
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                const moveX = (mouseX - 0.5) * 20;
+                const moveY = (mouseY - 0.5) * 15;
+                parallaxLayer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        }
+
+        // ===== CURSOR ANIMATION =====
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        if (cursorDot && cursorOutline) {
+            window.addEventListener('mousemove', function(e) {
+                cursorDot.style.left = e.clientX - 4 + 'px';
+                cursorDot.style.top = e.clientY - 4 + 'px';
+                cursorOutline.style.left = e.clientX - 20 + 'px';
+                cursorOutline.style.top = e.clientY - 20 + 'px';
+            });
+
+            const hoverElements = document.querySelectorAll('a, button, .filter-btn, .cert-card, .expand-btn, .view-all-btn, .theme-toggle, .back-btn, .cert-stat, .cert-image-wrapper');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorDot.classList.add('hover');
+                    cursorOutline.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorDot.classList.remove('hover');
+                    cursorOutline.classList.remove('hover');
+                });
+            });
+        }
+
+        // ===== CLOSE LIGHTBOX WITH ESCAPE =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                const menu = document.getElementById('mobileMenu');
+                if (menu.style.right === '0px') menu.style.right = '-300px';
+            }
+        });
+        // ===== BACK TO TOP =====
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('backToTop');
+            if (window.pageYOffset > 500) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
