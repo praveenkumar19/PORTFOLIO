@@ -1020,79 +1020,405 @@ body.dark-mode .logo img {
         /* ============================================
                    FOOTER
                    ============================================ */
-        .footer {
-            width: 100%;
-            padding: 50px 20px;
-            background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255,255,255,0.08);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .footer::before {
-            content: "";
-            position: absolute;
-            top: -120px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(78,205,196,0.12), transparent 70%);
-            filter: blur(50px);
-            z-index: 0;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 35px;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
-        }
-        .footer-links a {
-            position: relative;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 15px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .footer-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -6px;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
-            transition: width 0.3s ease;
-        }
-        .footer-links a:hover::after {
-            width: 100%;
-        }
-        .footer-links a:hover {
-            color: rgb(13, 255, 255);
-        }
-        .footer p {
-            position: relative;
-            z-index: 2;
-            color: var(--text-secondary);
-            font-size: 13px;
-            letter-spacing: 0.5px;
-        }
-        .footer h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--text-primary), #4ecdc4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+       /* ============================================
+FOOTER - IMPROVED STYLES
+============================================ */
+.footer {
+    background: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    padding: 60px 8% 0;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
 
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(78, 205, 196, 0.08), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.footer::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 223, 107, 0.06), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Brand Section */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+body:not(.dark-mode) .footer-logo {
+    filter: brightness(0) invert(0);
+}
+
+body.dark-mode .footer-logo {
+    filter: brightness(0) invert(1);
+}
+
+.footer-tagline {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    opacity: 0.8;
+    max-width: 280px;
+}
+
+/* Footer Headings */
+.footer h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.footer h4:hover::after {
+    width: 50px;
+}
+
+/* Quick Links */
+.footer-links-wrapper ul,
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-wrapper ul li,
+.footer-contact ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links-wrapper ul li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 0;
+    display: inline-block;
+}
+
+.footer-links-wrapper ul li a::before {
+    content: '›';
+    position: absolute;
+    left: -12px;
+    color: #4ecdc4;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.footer-links-wrapper ul li a:hover {
+    color: #4ecdc4;
+    padding-left: 16px;
+}
+
+.footer-links-wrapper ul li a:hover::before {
+    opacity: 1;
+    left: 0;
+}
+
+/* Contact Info */
+.footer-contact ul li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.footer-contact ul li i {
+    color: #4ecdc4;
+    width: 18px;
+    text-align: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.footer-contact ul li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.footer-contact ul li a:hover {
+    color: #4ecdc4;
+}
+
+.footer-contact ul li span {
+    color: var(--text-secondary);
+}
+
+/* Social Icons */
+.footer-social h4 {
+    margin-bottom: 16px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-gradient-1);
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: none;
+}
+
+.social-link:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: transparent;
+}
+
+.social-link i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover i {
+    transform: scale(1.1);
+}
+
+/* Social Colors */
+.social-link.github:hover {
+    background: #333;
+    color: white;
+    box-shadow: 0 8px 25px rgba(51, 51, 51, 0.3);
+}
+
+.social-link.linkedin:hover {
+    background: #0077b5;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 119, 181, 0.3);
+}
+
+.social-link.x:hover {
+    background: #020507;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.social-link.instagram:hover {
+    background: radial-gradient(circle at 30% 110%, 
+                #fdf497 0%, #fdf497 5%, #fd5949 45%, 
+                #d6249f 60%, #285AEB 90%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(225, 48, 108, 0.3);
+}
+
+.social-link.facebook:hover {
+    background: #1877f2;
+    color: white;
+    box-shadow: 0 8px 25px rgba(24, 119, 242, 0.3);
+}
+
+/* Footer CTA Button */
+.footer-cta {
+    margin-top: 5px;
+}
+
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
+    color: #0f172a;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    cursor: none;
+}
+
+.footer-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+}
+
+.footer-btn i {
+    transition: transform 0.3s ease;
+}
+
+.footer-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    margin-top: 50px;
+    padding: 20px 0;
+    border-top: 1px solid var(--card-border);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.footer-bottom .highlight {
+    color: #4ecdc4;
+    font-weight: 600;
+}
+
+.footer-credit {
+    font-size: 0.8rem;
+}
+
+.footer-credit i {
+    margin: 0 3px;
+}
+
+/* Dark Mode Fix for Social Icons */
+body.dark-mode .social-link {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+}
+
+body.dark-mode .social-link:hover {
+    border-color: transparent;
+}
+
+/* ===== RESPONSIVE FOOTER ===== */
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 5% 0;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-tagline {
+        max-width: 100%;
+    }
+
+    .footer h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-links-wrapper ul li a::before {
+        display: none;
+    }
+
+    .footer-links-wrapper ul li a:hover {
+        padding-left: 0;
+    }
+
+    .footer-contact ul li {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-link {
+        width: 38px;
+        height: 38px;
+    }
+
+    .social-link i {
+        font-size: 0.9rem;
+    }
+
+    .footer-btn {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+    }
+}
         /* ============================================
                    ANIMATIONS & UTILITIES
                    ============================================ */
@@ -1540,7 +1866,7 @@ body.dark-mode .logo img {
     ============================================ -->
     <section id="top" style="padding-top: 100px;">
         <div class="hero">
-            <h3>Hi! I'm Praveen Kumar A <span>👋</span></h3>
+            <h3>Hi! I'm Praveen Kumar A </h3>
             <h1>Cyber Security Student & Frontend Developer Based In Chennai.</h1>
             <p>I am Praveen Kumar, a Cyber security student focused on building modern applications. I enjoy creating responsive interfaces and solving problems through code.</p>
             <div class="btn-group">
@@ -1750,6 +2076,185 @@ body.dark-mode .logo img {
         </div>
     </section>
 
+
+   <!-- ============================================
+CERTIFICATES SECTION
+============================================ -->
+<section id="certificates" style="padding: 80px 8%;">
+    <div class="section-header fade-up">
+        <h4>My Achievements</h4>
+        <h2>Certificates</h2>
+        <p style="max-width: 600px; margin: 16px auto 0; color: var(--text-secondary);">
+            I've earned 35+ professional certifications across cybersecurity, AI, programming, and web development.
+        </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px;">
+
+        <!-- Certificate 1: NPTEL OOP -->
+        <div class="cert-card-preview fade-up" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; transition: all 0.4s ease; cursor: pointer;"
+             onclick="window.location.href='certificates.html'"
+             onmouseenter="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 30px var(--shadow)'; this.style.borderColor='#4ecdc4'"
+             onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='var(--card-border)'">
+            <div style="position: relative; width: 100%; height: 150px; overflow: hidden; background: var(--bg-gradient-1);">
+                <img src="nptel.png" alt="NPTEL OOP Certificate" 
+                     style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div style="display: none; align-items: center; justify-content: center; height: 100%; flex-direction: column; gap: 6px; color: var(--text-secondary);">
+                    <i class="fas fa-file-certificate" style="font-size: 30px; color: #4ecdc4; opacity: 0.4;"></i>
+                    <span style="font-size: 0.75rem;">Certificate</span>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+                    <span style="background: linear-gradient(135deg, #ffdf6b, #4ecdc4); color: #0f172a; padding: 6px 16px; border-radius: 30px; font-weight: 600; font-size: 0.75rem;">
+                        <i class="fas fa-search-plus"></i> View
+                    </span>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                     onmouseenter="this.previousElementSibling.style.opacity='1'"
+                     onmouseleave="this.previousElementSibling.style.opacity='0'">
+                </div>
+            </div>
+            <div style="padding: 14px 16px 16px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; background: var(--cert-badge-bg); color: var(--cert-badge-color); border-radius: 14px; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 8px;">
+                    <i class="fas fa-certificate"></i> NPTEL
+                </div>
+                <h3 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; color: var(--text-primary);">Fundamentals of OOP</h3>
+                <p style="font-size: 0.75rem; color: #4ecdc4; font-weight: 500; margin-bottom: 4px;">IIT Roorkee</p>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">12-week course with 68% score. Online assignments: 24.38/25, Exam: 43.5/75.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid var(--card-border);">
+                    <span style="font-size: 0.65rem; color: var(--text-secondary);"><i class="fas fa-calendar-alt" style="color: #4ecdc4;"></i> Jan-Apr 2026</span>
+                    <span style="font-size: 0.65rem; color: var(--text-secondary);"><i class="fas fa-star" style="color: #4ecdc4;"></i> <span style="color: #4ecdc4; font-weight: 600;">68%</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate 2: Deloitte Cyber -->
+        <div class="cert-card-preview fade-up" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; transition: all 0.4s ease; cursor: pointer;"
+             onclick="window.location.href='certificates.html'"
+             onmouseenter="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 30px var(--shadow)'; this.style.borderColor='#4ecdc4'"
+             onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='var(--card-border)'">
+            <div style="position: relative; width: 100%; height: 150px; overflow: hidden; background: var(--bg-gradient-1);">
+                <img src="deloitte.png" alt="Deloitte Cyber Certificate" 
+                     style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div style="display: none; align-items: center; justify-content: center; height: 100%; flex-direction: column; gap: 6px; color: var(--text-secondary);">
+                    <i class="fas fa-file-certificate" style="font-size: 30px; color: #4ecdc4; opacity: 0.4;"></i>
+                    <span style="font-size: 0.75rem;">Certificate</span>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+                    <span style="background: linear-gradient(135deg, #ffdf6b, #4ecdc4); color: #0f172a; padding: 6px 16px; border-radius: 30px; font-weight: 600; font-size: 0.75rem;">
+                        <i class="fas fa-search-plus"></i> View
+                    </span>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                     onmouseenter="this.previousElementSibling.style.opacity='1'"
+                     onmouseleave="this.previousElementSibling.style.opacity='0'">
+                </div>
+            </div>
+            <div style="padding: 14px 16px 16px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; background: var(--cert-badge-bg); color: var(--cert-badge-color); border-radius: 14px; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 8px;">
+                    <i class="fas fa-shield-halved"></i> Cyber
+                </div>
+                <h3 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; color: var(--text-primary);">Cyber Job Simulation</h3>
+                <p style="font-size: 0.75rem; color: #4ecdc4; font-weight: 500; margin-bottom: 4px;">Deloitte Australia</p>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Completed practical cybersecurity tasks including threat analysis and security operations.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid var(--card-border);">
+                    <span style="font-size: 0.65rem; color: var(--text-secondary);"><i class="fas fa-calendar-alt" style="color: #4ecdc4;"></i> Jun 2026</span>
+                    <span style="font-size: 0.65rem; color: var(--text-secondary);"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> <span style="color: #4ecdc4; font-weight: 600;">Done</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate 3: IBM Cybersecurity -->
+        <div class="cert-card-preview fade-up" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; transition: all 0.4s ease; cursor: pointer;"
+             onclick="window.location.href='certificates.html'"
+             onmouseenter="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 30px var(--shadow)'; this.style.borderColor='#4ecdc4'"
+             onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='var(--card-border)'">
+            <div style="position: relative; width: 100%; height: 150px; overflow: hidden; background: var(--bg-gradient-1);">
+                <img src="ibm.png" alt="IBM Cybersecurity Certificate" 
+                     style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div style="display: none; align-items: center; justify-content: center; height: 100%; flex-direction: column; gap: 6px; color: var(--text-secondary);">
+                    <i class="fas fa-file-certificate" style="font-size: 30px; color: #4ecdc4; opacity: 0.4;"></i>
+                    <span style="font-size: 0.75rem;">Certificate</span>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+                    <span style="background: linear-gradient(135deg, #ffdf6b, #4ecdc4); color: #0f172a; padding: 6px 16px; border-radius: 30px; font-weight: 600; font-size: 0.75rem;">
+                        <i class="fas fa-search-plus"></i> View
+                    </span>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                     onmouseenter="this.previousElementSibling.style.opacity='1'"
+                     onmouseleave="this.previousElementSibling.style.opacity='0'">
+                </div>
+            </div>
+            <div style="padding: 14px 16px 16px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; background: var(--cert-badge-bg); color: var(--cert-badge-color); border-radius: 14px; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 8px;">
+                    <i class="fas fa-lock"></i> IBM
+                </div>
+                <h3 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; color: var(--text-primary);">Cybersecurity Fundamentals</h3>
+                <p style="font-size: 0.75rem; color: #4ecdc4; font-weight: 500; margin-bottom: 4px;">IBM SkillsBuild</p>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Professional certificate on threats, vulnerabilities, and defense mechanisms. Verified via Credly.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid var(--card-border);">
+                    <span style="font-size: 0.65rem; color: var(--text-secondary);"><i class="fas fa-calendar-alt" style="color: #4ecdc4;"></i> Jun 04, 2026</span>
+                    <span style="font-size: 0.65rem; color: var(--text-secondary);"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> <span style="color: #4ecdc4; font-weight: 600;">Verified</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate 4: freeCodeCamp Responsive -->
+        <div class="cert-card-preview fade-up" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; transition: all 0.4s ease; cursor: pointer;"
+             onclick="window.location.href='certificates.html'"
+             onmouseenter="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 30px var(--shadow)'; this.style.borderColor='#4ecdc4'"
+             onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.borderColor='var(--card-border)'">
+            <div style="position: relative; width: 100%; height: 150px; overflow: hidden; background: var(--bg-gradient-1);">
+                <img src="freecodecamp.png" alt="freeCodeCamp Responsive Certificate" 
+                     style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div style="display: none; align-items: center; justify-content: center; height: 100%; flex-direction: column; gap: 6px; color: var(--text-secondary);">
+                    <i class="fas fa-file-certificate" style="font-size: 30px; color: #4ecdc4; opacity: 0.4;"></i>
+                    <span style="font-size: 0.75rem;">Certificate</span>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+                    <span style="background: linear-gradient(135deg, #ffdf6b, #4ecdc4); color: #0f172a; padding: 6px 16px; border-radius: 30px; font-weight: 600; font-size: 0.75rem;">
+                        <i class="fas fa-search-plus"></i> View
+                    </span>
+                </div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                     onmouseenter="this.previousElementSibling.style.opacity='1'"
+                     onmouseleave="this.previousElementSibling.style.opacity='0'">
+                </div>
+            </div>
+            <div style="padding: 14px 16px 16px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; background: var(--cert-badge-bg); color: var(--cert-badge-color); border-radius: 14px; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 8px;">
+                    <i class="fas fa-code"></i> fCC
+                </div>
+                <h3 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; color: var(--text-primary);">Responsive Web Design</h3>
+                <p style="font-size: 0.75rem; color: #4ecdc4; font-weight: 500; margin-bottom: 4px;">freeCodeCamp</p>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">300-hour certification with 5 projects. HTML5, CSS3, and responsive design principles.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid var(--card-border);">
+                    <span style="font-size: 0.65rem; color: var(--text-secondary);"><i class="fas fa-calendar-alt" style="color: #4ecdc4;"></i> Feb 28, 2026</span>
+                    <span style="font-size: 0.65rem; color: var(--text-secondary);"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> <span style="color: #4ecdc4; font-weight: 600;">300 Hours</span></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- View All Button -->
+    <div style="display: flex; justify-content: center; margin-top: 35px;">
+        <a href="certificates.html" class="view-all-btn" 
+           style="padding: 14px 40px; border: 2px solid var(--card-border); border-radius: 40px; text-decoration: none; color: var(--text-primary); font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; background: transparent;"
+           onmouseenter="this.style.background='linear-gradient(135deg, #ffdf6b, #4ecdc4)'; this.style.color='#0f172a'; this.style.borderColor='#4ecdc4'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 30px rgba(78,205,196,0.3)'"
+           onmouseleave="this.style.background='transparent'; this.style.color='var(--text-primary)'; this.style.borderColor='var(--card-border)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            <i class="fas fa-certificate"></i> View All Certificates →
+        </a>
+    </div>
+</section>
     <!-- ============================================
     CONTACT SECTION
     ============================================ -->
@@ -1781,18 +2286,79 @@ body.dark-mode .logo img {
     </section>
 
     <!-- ============================================
-    FOOTER
-    ============================================ -->
-    <footer class="footer">
-        <h2>Praveen Kumar</h2>
-        <div class="footer-links">
-            <a href="mailto:mrapraveenkumar200719@gmail.com">Email</a>
-            <a href="tel:9094392300">Phone</a>
-            <a href="https://github.com/praveenkumar19" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/praveen-kumar-792b8a395/" target="_blank">LinkedIn</a>
+FOOTER - IMPROVED VERSION
+============================================ -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Brand Section -->
+        <div class="footer-brand">
+            <img src="signature-dark-.png" alt="Praveen Kumar" class="footer-logo" id="footerLogo">
+            <p class="footer-tagline">Cyber Security Student &amp; Frontend Developer</p>
         </div>
-        <p>© 2026 Praveen Kumar. All rights reserved.</p>
-    </footer>
+
+        <!-- Quick Links -->
+        <div class="footer-links-wrapper">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="#top">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#work">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="certificates.html">Certificates</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-contact">
+            <h4>Get In Touch</h4>
+            <ul>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:mrapraveenkumar200719@gmail.com">mrapraveenkumar200719@gmail.com</a>
+                </li>
+                <li>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:9094392300">+91 90943 92300</a>
+                </li>
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Chennai, India</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="footer-social">
+            <h4>Follow Me</h4>
+            <div class="social-icons">
+                <a href="https://github.com/praveenkumar19" target="_blank" class="social-link github" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/praveen-kumar-792b8a395/" target="_blank" class="social-link linkedin" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/praveeneyy19/" target="_blank" class="social-link instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/praveen19a" target="_blank" class="social-link x" aria-label="X (Twitter)">
+                    <i class="fab fa-x"></i>
+                </a>
+            </div>
+            <div class="footer-cta">
+                <a href="#contact" class="footer-btn">Let's Talk <i class="fas fa-paper-plane"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <p>© 2026 <span class="highlight">Praveen Kumar</span>. All rights reserved.</p>
+            <p>Designed & Developed by <span class="highlight">Praveen Kumar</span></p>
+        </div>
+    </div>
+</footer>
 
     <!-- ============================================
     BACK TO TOP BUTTON
