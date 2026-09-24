@@ -86,138 +86,6 @@
             --shadow: rgba(0, 0, 0, 0.3);
         }
 
-        /* ===== BODY - START WITH LIGHT MODE ===== */
-        body {
-            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
-            color: var(--text-primary);
-            line-height: 1.5;
-            overflow-x: hidden;
-            transition: background 0.5s ease, color 0.3s ease;
-            cursor: none;
-            position: relative;
-        }
-
-        /* ============================================
-                   LIGHT MODE - SKY & CLOUDS ANIMATION
-                   ============================================ */
-        .light-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-            overflow: hidden;
-            background: linear-gradient(180deg, #e8f0fe 0%, #dce8f5 30%, #f0f4f8 70%, #e8edf2 100%);
-        }
-        body.dark-mode .light-bg {
-            opacity: 0;
-        }
-
-        /* ===== SUN ===== */
-        .sun {
-            position: absolute;
-            top: -80px;
-            right: -80px;
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 223, 107, 0.5) 0%, rgba(255, 200, 50, 0.2) 40%, transparent 70%);
-            filter: blur(40px);
-            animation: sunGlow 8s ease-in-out infinite alternate;
-        }
-        @keyframes sunGlow {
-            0% { transform: scale(1) rotate(0deg); opacity: 0.6; }
-            100% { transform: scale(1.2) rotate(10deg); opacity: 0.9; }
-        }
-
-        .sun-ray {
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 223, 107, 0.08) 0%, transparent 60%);
-            animation: sunRotate 30s linear infinite;
-        }
-        @keyframes sunRotate {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(360deg) scale(1.1); }
-        }
-
-        /* ===== CLOUDS - DARKER FOR BETTER VISIBILITY ===== */
-        .cloud {
-            position: absolute;
-            background: rgba(190, 200, 215, 0.7);
-            border-radius: 50px;
-            filter: blur(1px);
-            backdrop-filter: blur(2px);
-            animation: cloudDrift linear infinite;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        .cloud::before,
-        .cloud::after {
-            content: '';
-            position: absolute;
-            background: rgba(190, 200, 215, 0.7);
-            border-radius: 50%;
-            backdrop-filter: blur(2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .cloud-1 { width: 200px; height: 40px; top: 15%; left: -100px; animation-duration: 25s; animation-delay: 0s; }
-        .cloud-1::before { width: 80px; height: 80px; top: -40px; left: 20px; }
-        .cloud-1::after { width: 100px; height: 100px; top: -50px; left: 60px; }
-
-        .cloud-2 { width: 250px; height: 45px; top: 30%; left: -150px; animation-duration: 30s; animation-delay: -8s; }
-        .cloud-2::before { width: 100px; height: 90px; top: -45px; left: 30px; }
-        .cloud-2::after { width: 120px; height: 110px; top: -55px; left: 80px; }
-
-        .cloud-3 { width: 180px; height: 35px; top: 50%; left: -120px; animation-duration: 22s; animation-delay: -15s; }
-        .cloud-3::before { width: 70px; height: 70px; top: -35px; left: 20px; }
-        .cloud-3::after { width: 90px; height: 85px; top: -45px; left: 55px; }
-
-        .cloud-4 { width: 220px; height: 38px; top: 70%; left: -180px; animation-duration: 28s; animation-delay: -5s; }
-        .cloud-4::before { width: 85px; height: 75px; top: -38px; left: 25px; }
-        .cloud-4::after { width: 110px; height: 95px; top: -48px; left: 70px; }
-
-        .cloud-5 { width: 160px; height: 30px; top: 85%; left: -80px; animation-duration: 20s; animation-delay: -12s; }
-        .cloud-5::before { width: 60px; height: 60px; top: -30px; left: 15px; }
-        .cloud-5::after { width: 80px; height: 75px; top: -40px; left: 50px; }
-
-        @keyframes cloudDrift {
-            0% { transform: translateX(0) scale(1); opacity: 0.6; }
-            50% { opacity: 0.9; }
-            100% { transform: translateX(calc(100vw + 300px)) scale(1.1); opacity: 0.6; }
-        }
-
-        /* ===== LIGHT PARTICLES (Golden) ===== */
-        .light-particle {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
-            animation: particleFloat 12s ease-in-out infinite;
-        }
-        .light-particle:nth-child(1) { width: 4px; height: 4px; top: 10%; left: 20%; animation-delay: 0s; }
-        .light-particle:nth-child(2) { width: 6px; height: 6px; top: 25%; left: 60%; animation-delay: 2s; }
-        .light-particle:nth-child(3) { width: 3px; height: 3px; top: 40%; left: 80%; animation-delay: 4s; }
-        .light-particle:nth-child(4) { width: 5px; height: 5px; top: 55%; left: 30%; animation-delay: 6s; }
-        .light-particle:nth-child(5) { width: 4px; height: 4px; top: 70%; left: 70%; animation-delay: 8s; }
-        .light-particle:nth-child(6) { width: 6px; height: 6px; top: 85%; left: 40%; animation-delay: 10s; }
-        .light-particle:nth-child(7) { width: 3px; height: 3px; top: 15%; left: 90%; animation-delay: 3s; }
-        .light-particle:nth-child(8) { width: 5px; height: 5px; top: 45%; left: 10%; animation-delay: 7s; }
-        .light-particle:nth-child(9) { width: 4px; height: 4px; top: 65%; left: 85%; animation-delay: 11s; }
-        .light-particle:nth-child(10) { width: 6px; height: 6px; top: 90%; left: 55%; animation-delay: 5s; }
-
-        @keyframes particleFloat {
-            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
-            50% { transform: translateY(-30px) translateX(10px) scale(1.5); opacity: 0.7; }
-        }
 
         /* ===== SOFT MIST ===== */
         .mist {
@@ -422,44 +290,7 @@
             transition: transform 0.1s ease-out;
         }
 
-        /* ============================================
-                   CURSOR ANIMATION
-                   ============================================ */
-        .cursor-dot {
-            width: 15px;
-            height: 15px;
-            background: #00ffc3;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease;
-        }
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #00ffdd;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.2s ease;
-            opacity: 0.6;
-        }
-        .cursor-dot.hover {
-            transform: scale(1.5);
-            background: white;
-        }
-        .cursor-outline.hover {
-            transform: scale(1.5);
-            border-color: #ff6b6b;
-            opacity: 1;
-            background: rgba(78, 205, 196, 0.1);
-        }
-        @media (max-width: 768px) {
-            body { cursor: auto; }
-            .cursor-dot, .cursor-outline { display: none; }
-        }
+        
 
         /* ============================================
                    NAVIGATION
@@ -561,72 +392,251 @@ body.dark-mode .logo img {
             color: var(--text-primary);
         }
 
-        /* ============================================
-                   HERO SECTION
-                   ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-        .hero h3 {
-            font-size: 28px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            max-width: 900px;
-            background: linear-gradient(135deg, var(--text-primary), #4ecdc4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .hero p {
-            max-width: 600px;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            font-size: 18px;
-        }
-        .btn-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn-primary, .btn-secondary {
-            padding: 14px 36px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: none;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #ffdf6b, #4ecdc4);
-            color: rgb(0, 0, 0);
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
-        }
-        .btn-secondary {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-primary);
-        }
-        .btn-secondary:hover {
-            transform: translateY(-3px);
-            background: rgba(78, 205, 196, 0.1);
-        }
+       /* ============================================
+HERO SECTION
+============================================ */
+
+.hero-section {
+min-height: 90vh;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 120px 20px 80px;
+position: relative;
+overflow: hidden;
+}
+
+.hero {
+width: 100%;
+max-width: 950px;
+margin: 0 auto;
+text-align: center;
+position: relative;
+z-index: 2;
+}
+
+/* Small Introduction */
+
+.hero-intro {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 24px;
+padding: 9px 17px;
+border: 1px solid rgba(78, 205, 196, 0.25);
+border-radius: 50px;
+background: rgba(78, 205, 196, 0.06);
+color: var(--text-secondary);
+font-size: 14px;
+font-weight: 500;
+letter-spacing: 0.3px;
+}
+
+.hero-dot {
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: #4ecdc4;
+box-shadow: 0 0 12px rgba(78, 205, 196, 0.7);
+}
+
+/* Main Heading */
+
+.hero h1 {
+max-width: 950px;
+margin: 0 auto;
+font-size: clamp(48px, 7vw, 82px);
+line-height: 1.05;
+letter-spacing: -3px;
+font-weight: 800;
+color: var(--text-primary);
+}
+
+.hero h1 span {
+color: #4ecdc4;
+font-weight: 700;
+}
+
+/* Location */
+
+.hero-location {
+margin: 20px 0 0;
+color: #4ecdc4;
+font-size: 17px;
+font-weight: 600;
+letter-spacing: 0.4px;
+}
+
+/* Description */
+
+.hero-description {
+max-width: 690px;
+margin: 24px auto 0;
+color: var(--text-secondary);
+font-size: 17px;
+line-height: 1.8;
+}
+
+/* Buttons */
+
+.hero .btn-group {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 14px;
+margin-top: 34px;
+flex-wrap: wrap;
+}
+
+.hero .btn-primary,
+.hero .btn-secondary {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+min-width: 155px;
+padding: 14px 24px;
+border-radius: 12px;
+text-decoration: none;
+font-size: 15px;
+font-weight: 600;
+transition: all 0.3s ease;
+}
+
+.hero .btn-primary {
+background: #4ecdc4;
+color: #07191a;
+border: 1px solid #4ecdc4;
+}
+
+.hero .btn-primary:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 30px rgba(78, 205, 196, 0.25);
+}
+
+.hero .btn-secondary {
+background: transparent;
+color: var(--text-primary);
+border: 1px solid var(--border-color);
+}
+
+.hero .btn-secondary:hover {
+transform: translateY(-3px);
+border-color: #4ecdc4;
+color: #4ecdc4;
+}
+
+/* Technology Row */
+
+.hero-tech {
+margin-top: 60px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 14px;
+}
+
+.hero-tech > span {
+color: var(--text-secondary);
+font-size: 12px;
+text-transform: uppercase;
+letter-spacing: 1.5px;
+opacity: 0.75;
+}
+
+.hero-tech-list {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 9px;
+}
+
+.hero-tech-list span {
+padding: 7px 13px;
+border: 1px solid var(--border-color);
+border-radius: 7px;
+color: var(--text-secondary);
+font-size: 12px;
+background: rgba(255, 255, 255, 0.02);
+transition: all 0.25s ease;
+}
+
+.hero-tech-list span:hover {
+color: #4ecdc4;
+border-color: rgba(78, 205, 196, 0.4);
+transform: translateY(-2px);
+}
+
+/* ============================================
+HERO RESPONSIVE
+============================================ */
+
+@media (max-width: 768px) {
+
+.hero-section {
+    min-height: auto;
+    padding: 110px 20px 70px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 11vw, 58px);
+    letter-spacing: -2px;
+}
+
+.hero-description {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.hero-location {
+    font-size: 15px;
+}
+
+.hero-tech {
+    margin-top: 45px;
+}
+}
+
+@media (max-width: 480px) {
+
+
+.hero-section {
+    padding: 100px 16px 60px;
+}
+
+.hero-intro {
+    font-size: 13px;
+    padding: 8px 14px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    letter-spacing: -1.5px;
+}
+
+.hero-description {
+    font-size: 14px;
+}
+
+.hero .btn-group {
+    flex-direction: column;
+    width: 100%;
+}
+
+.hero .btn-primary,
+.hero .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+}
+
+.hero-tech-list {
+    max-width: 330px;
+}
+
+
+}
+
 
         /* ============================================
                    SECTIONS
@@ -1769,39 +1779,6 @@ body.dark-mode .social-link:hover {
     </div>
 
     <!-- ============================================
-    LIGHT MODE - SKY & CLOUDS BACKGROUND
-    ============================================ -->
-    <div class="light-bg" id="lightBg">
-        <!-- Sun -->
-        <div class="sun"></div>
-        <div class="sun-ray"></div>
-        
-        <!-- Clouds - Darker for better visibility -->
-        <div class="cloud cloud-1"></div>
-        <div class="cloud cloud-2"></div>
-        <div class="cloud cloud-3"></div>
-        <div class="cloud cloud-4"></div>
-        <div class="cloud cloud-5"></div>
-        
-        <!-- Light Particles -->
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        <div class="light-particle"></div>
-        
-        <!-- Mist -->
-        <div class="mist mist-1"></div>
-        <div class="mist mist-2"></div>
-        <div class="mist mist-3"></div>
-    </div>
-
-    <!-- ============================================
     DARK MODE - SPACE BACKGROUND
     ============================================ -->
     <div class="space-bg">
@@ -1820,11 +1797,6 @@ body.dark-mode .social-link:hover {
         <div id="shootingStarsContainer"></div>
     </div>
 
-    <!-- ============================================
-    CURSOR
-    ============================================ -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
 
     <!-- ============================================
     NAVIGATION
@@ -1863,18 +1835,68 @@ body.dark-mode .social-link:hover {
 
     <!-- ============================================
     HERO SECTION
-    ============================================ -->
-    <section id="top" style="padding-top: 100px;">
-        <div class="hero">
-            <h3>Hi! I'm Praveen Kumar A </h3>
-            <h1>Cyber Security Student & Frontend Developer Based In Chennai.</h1>
-            <p>I am Praveen Kumar, a Cyber security student focused on building modern applications. I enjoy creating responsive interfaces and solving problems through code.</p>
-            <div class="btn-group">
-                <a href="#contact" class="btn-primary">Contact me →</a>
-                <a href="my_resume.html" class="btn-secondary" download>My resume ↓</a>
-            </div>
+============================================ -->
+
+<section id="top" class="hero-section"> 
+<div class="hero">
+
+    <div class="hero-intro fade-up">
+        <span class="hero-dot"></span>
+        <span>Hi, I'm Praveen Kumar A</span>
+    </div>
+
+    <h1 class="fade-up">
+    Cyber Security Student
+    <span>|</span>
+    Frontend Developer
+    <span>|</span>
+    Exploring Full-Stack Development
+</h1>
+
+
+    <p class="hero-location fade-up">
+        Based in Chennai, India
+    </p>
+
+    <p class="hero-description fade-up">
+        I build responsive, user-focused web applications while exploring
+        cybersecurity, secure development, and modern frontend technologies.
+        I enjoy turning ideas into clean and functional digital experiences.
+    </p>
+
+    <div class="btn-group fade-up">
+
+        <a href="#contact" class="btn-primary">
+            Let's Connect
+            <span>→</span>
+        </a>
+
+        <a href="#projects" class="btn-secondary">
+            View My Work
+            <span>↗</span>
+        </a>
+
+    </div>
+
+    <div class="hero-tech fade-up">
+
+        <span>Currently working with</span>
+
+        <div class="hero-tech-list">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>React</span>
+            <span>Java</span>
+            <span>Python</span>
         </div>
-    </section>
+
+    </div>
+
+</div>
+
+</section>
+
 
     <!-- ============================================
     ABOUT SECTION
@@ -1894,7 +1916,7 @@ body.dark-mode .social-link:hover {
                     <div class="info-card">
                         <div class="card-icon"><i class="fas fa-code"></i></div>
                         <h3>Languages</h3>
-                        <p>Python, Java, JavaScript, C++, HTML/CSS</p>
+                        <p>Python, Java, JavaScript, C++, HTML/CSS , React , Data Structure using Java , Data Science using Python , DBMS </p>
                     </div>
                     <div class="info-card">
                         <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
@@ -1934,57 +1956,160 @@ body.dark-mode .social-link:hover {
         </div>
     </section>
 
-    <!-- ============================================
+<!-- ============================================
     SKILLS SECTION
-    ============================================ -->
-    <section id="skills">
-        <div class="section-header fade-up">
-            <h4>What I love to do</h4>
-            <h2>My Skills</h2>
-            <p style="max-width: 600px; margin: 16px auto 0; color: var(--text-secondary);">Experienced in frontend development, Java OOP, and Python scripting, with a passion for building clean, functional applications.</p>
+============================================ -->
+
+<section id="skills">
+<div class="section-header fade-up">
+    <h4>What I Work With</h4>
+    <h2>My Skills</h2>
+    <p style="max-width: 650px; margin: 16px auto 0; color: var(--text-secondary);">
+        A growing technical skill set focused on frontend development,
+        cybersecurity, programming, and user interface design.
+    </p>
+</div>
+
+<div class="skills-grid">
+
+    <!-- Frontend Development -->
+    <div class="skill-card fade-up">
+        <div class="skill-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24"
+                fill="none" stroke="#4ecdc4" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 9l-4 3 4 3"/>
+                <path d="M16 9l4 3-4 3"/>
+                <path d="M14 5l-4 14"/>
+            </svg>
         </div>
-        <div class="skills-grid">
-            <div class="skill-card fade-up">
-                <div class="skill-icon">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5">
-                        <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9"/>
-                    </svg>
-                </div>
-                <h3>Web Development</h3>
-                <p>Building responsive, user-friendly websites with HTML, CSS, JS</p>
-            </div>
-            <div class="skill-card fade-up">
-                <div class="skill-icon">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="1.5">
-                        <rect x="3" y="3" width="18" height="18" rx="2"/>
-                        <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
-                    </svg>
-                </div>
-                <h3>UI/UX Design</h3>
-                <p>Crafting intuitive interfaces using Figma and Canva</p>
-            </div>
-            <div class="skill-card fade-up">
-                <div class="skill-icon">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#45b7d1" stroke-width="1.5">
-                        <path d="M7 8l10 8M17 8L7 16"/>
-                        <circle cx="12" cy="12" r="10"/>
-                    </svg>
-                </div>
-                <h3>Java & OOP</h3>
-                <p>Developing real-world applications with object-oriented principles</p>
-            </div>
-            <div class="skill-card fade-up">
-                <div class="skill-icon">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#9b59b6" stroke-width="1.5">
-                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                        <circle cx="12" cy="12" r="3"/>
-                    </svg>
-                </div>
-                <h3>Python Development</h3>
-                <p>Building tools, quizzes, and automation scripts</p>
-            </div>
+
+        <h3>Frontend Development</h3>
+
+        <p>
+            Building responsive and user-friendly websites using
+            HTML, CSS, JavaScript, and React.
+        </p>
+    </div>
+
+
+    <!-- React Development -->
+    <div class="skill-card fade-up">
+        <div class="skill-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24"
+                fill="none" stroke="#61dafb" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="12" rx="10" ry="4"/>
+                <ellipse cx="12" cy="12" rx="10" ry="4"
+                    transform="rotate(60 12 12)"/>
+                <ellipse cx="12" cy="12" rx="10" ry="4"
+                    transform="rotate(120 12 12)"/>
+                <circle cx="12" cy="12" r="1.5" fill="#61dafb"/>
+            </svg>
         </div>
-    </section>
+
+        <h3>React Development</h3>
+
+        <p>
+            Creating component-based interfaces and single-page
+            applications with React and React Router.
+        </p>
+    </div>
+
+
+    <!-- Cyber Security -->
+    <div class="skill-card fade-up">
+        <div class="skill-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24"
+                fill="none" stroke="#9b59b6" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3L20 6v5c0 5.2-3.4 8.8-8 10-4.6-1.2-8-4.8-8-10V6l8-3z"/>
+                <path d="M9 12l2 2 4-4"/>
+            </svg>
+        </div>
+
+        <h3>Cyber Security</h3>
+
+        <p>
+            Exploring cybersecurity fundamentals, secure authentication,
+            web security, and security-focused development.
+        </p>
+    </div>
+
+
+    <!-- Java & OOP -->
+    <div class="skill-card fade-up">
+        <div class="skill-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24"
+                fill="none" stroke="#f89820" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 17c-2 1-2 3 1 3h7"/>
+                <path d="M10 14c-2 1-1 3 2 3h4"/>
+                <path d="M9 5c4 1 4 4 2 6-2 2-1 4 2 4"/>
+                <path d="M15 5c-2 1-2 3 0 4 2 1 2 3 0 5"/>
+            </svg>
+        </div>
+
+        <h3>Java & OOP</h3>
+
+        <p>
+            Developing programming solutions using Java and
+            object-oriented programming concepts.
+        </p>
+    </div>
+
+
+    <!-- Python -->
+    <div class="skill-card fade-up">
+        <div class="skill-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24"
+                fill="none" stroke="#3776ab" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3H8a3 3 0 0 0-3 3v3h7v3H8a3 3 0 0 1-3-3"/>
+                <path d="M12 21h4a3 3 0 0 0 3-3v-3h-7v-3h4a3 3 0 0 1 3 3"/>
+                <circle cx="9" cy="6.5" r=".7" fill="#3776ab"/>
+                <circle cx="15" cy="17.5" r=".7" fill="#3776ab"/>
+            </svg>
+        </div>
+
+        <h3>Python Development</h3>
+
+        <p>
+            Building basic applications, automation scripts,
+            problem-solving programs, and development tools.
+        </p>
+    </div>
+
+
+    <!-- UI/UX -->
+    <div class="skill-card fade-up">
+        <div class="skill-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24"
+                fill="none" stroke="#ff6b6b" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="3"/>
+                <path d="M3 8h18"/>
+                <circle cx="6" cy="5.5" r=".7" fill="#ff6b6b"/>
+                <circle cx="9" cy="5.5" r=".7" fill="#ff6b6b"/>
+                <path d="M7 12h4v6H7z"/>
+                <path d="M13 12h4"/>
+                <path d="M13 15h4"/>
+                <path d="M13 18h3"/>
+            </svg>
+        </div>
+
+        <h3>UI/UX Design</h3>
+
+        <p>
+            Designing clean and intuitive interfaces using Figma
+            with a focus on usability and responsive layouts.
+        </p>
+    </div>
+
+</div>
+
+</section>
+
 
     <!-- ============================================
     PROJECTS SECTION
@@ -2021,29 +2146,49 @@ body.dark-mode .social-link:hover {
                 </div>
             </a>
             <!-- Project 2 -->
-            <a href="https://praveenkumar19.github.io/GROCERY-WEBSITE/" target="_blank" class="project-card-link">
-                <div class="project-card fade-up">
-                    <div class="project-image-wrapper">
-                        <img class="project-img" src="grocery.png" alt="Grocery Website">
-                        <div class="project-overlay">
-                            <span class="project-live-btn">Live Demo →</span>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <h3>Grocery Website</h3>
-                        <p class="project-desc">A modern grocery ordering platform with menu browsing, cart management, and responsive design features.</p>
-                        <div class="project-footer">
-                            <span class="project-date">2026</span>
-                            <span class="project-arrow">→</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            <a href="https://github.com/praveenkumar19/PUBLIC-TOILET-COMPLAINT-MANAGEMENT-SYSTEM" target="_blank" rel="noopener noreferrer" class="project-card-link">
+    <div class="project-card fade-up">
+
+    <div class="project-image-wrapper">
+        <img
+            class="project-img"
+            src="public-toilet.png"
+            alt="Public Toilet Complaint Management System"
+        >
+
+        <div class="project-overlay">
+            <span class="project-live-btn">View on GitHub →</span>
+        </div>
+    </div>
+
+    <div class="project-info">
+
+        <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express.js</span>
+        </div>
+
+        <h3>Public Toilet Complaint Management System</h3>
+
+        <p class="project-desc">
+            A web-based sanitation management platform that enables citizens
+            to register and track public toilet complaints while allowing
+            administrators to manage cleaning records, assign staff, and
+            monitor complaint resolution.
+        </p>
+
+        <div class="project-footer">
+            <span class="project-date">SIH 2026</span>
+            <span class="project-arrow">→</span>
+        </div>
+
+    </div>
+</div>
+</a>
+
             <!-- Project 3 -->
             <a href="https://praveenkumar19.github.io/COLLEGE-WEBSITE/" target="_blank" class="project-card-link">
                 <div class="project-card fade-up">
